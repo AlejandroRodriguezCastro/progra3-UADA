@@ -16,6 +16,9 @@ bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
 
+### Copilot data ###
+.copilot/
+
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
