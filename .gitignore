@@ -18,6 +18,7 @@ bin/
 
 ### Copilot data ###
 .copilot/
+copilot.data.*
 
 ### NetBeans ###
 /nbproject/private/
