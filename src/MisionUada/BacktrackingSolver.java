@@ -67,6 +67,11 @@ public class BacktrackingSolver {
             if (d.getOrigen().equals(estacionActual)) {
                 Estacion destino = d.getDestino();
 
+                // Evitar revisitar estaciones excepto el punto de partida
+                if (visitados.contains(destino) && !destino.equals(estacionOrigen)) {
+                    continue;
+                }
+
                 for (Movimiento mov : d.getMovimientosPermitidos()) {
                     float tiempoMovimiento = calcularTiempo(d.getTiempoBase(), mov);
                     float nuevoTiempo = tiempoActual + tiempoMovimiento;
@@ -103,12 +108,15 @@ public class BacktrackingSolver {
                     Decision decision = new Decision(estacionActual, destino, mov, nuevaBateria, nuevoTiempo);
                     rutaActual.add(decision);
 
+                    Set<Estacion> nuevosVisitados = new HashSet<>(visitados);
+                    nuevosVisitados.add(destino);
+
                     mejorRuta = backtracking(
                             destino,
                             estacionOrigen,
                             nuevaBateria,
                             nuevoTiempo,
-                            visitados,
+                            nuevosVisitados,
                             rutaActual,
                             obligatoriosActual,
                             mejorTiempo,
